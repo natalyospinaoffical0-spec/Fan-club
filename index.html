@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morgan Wallen Fan Club</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Inter';
+color:white;
+background:black;
+}
+
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1506157786151-b8491531f063') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.75);
+}
+
+.card{
+position:relative;
+z-index:2;
+background:rgba(0,0,0,0.85);
+padding:30px;
+border-radius:20px;
+width:90%;
+max-width:420px;
+box-shadow:0 0 25px rgba(255,215,0,0.4);
+text-align:center;
+}
+
+h1{
+font-family:'Playfair Display';
+font-size:2em;
+background:linear-gradient(45deg,gold,white);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+input{
+width:90%;
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,gold,#ffcc00);
+margin-top:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.page{
+display:none;
+padding:30px;
+min-height:100vh;
+background:linear-gradient(135deg,#000,#1a0033,#000);
+}
+
+img{
+width:100%;
+border-radius:15px;
+margin:15px 0;
+}
+
+#liveAlert{
+position:fixed;
+top:15px;
+right:15px;
+background:black;
+padding:10px;
+border-radius:10px;
+color:gold;
+display:none;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="liveAlert"></div>
+
+<!-- PAGE 1 -->
+<div id="page1" class="hero">
+
+<div class="overlay"></div>
+
+<div class="card">
+<h1>Morgan Wallen Fan Club</h1>
+
+<p style="color:gold;">Private VIP Access</p>
+
+<p>Subscription required: <b>$500</b></p>
+
+<input id="codeInput" placeholder="Enter VIP Code">
+
+<button onclick="checkCode()">Unlock Access</button>
+
+<button onclick="showContact()">Contact Manager</button>
+
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+
+<h1>Biography</h1>
+
+<img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4">
+
+<p>
+Morgan Wallen is one of the biggest modern country artists, known for his emotional storytelling, powerful voice, and global success.
+He rose from Tennessee roots to international fame through persistence and talent.
+</p>
+
+<button onclick="next('page3')">Continue</button>
+
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+
+<h1>Tour Access</h1>
+
+<img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2">
+
+<p>
+Exclusive VIP tour access is coming soon. Only selected members will be allowed entry.
+</p>
+
+<p style="color:gold;">
+Upgrade includes signed items, backstage access, and priority seating.
+</p>
+
+<button onclick="next('page4')">Continue</button>
+
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+
+<h1>Premium Membership</h1>
+
+<p>
+This is a private membership program for dedicated fans.
+It includes exclusive updates, priority access, and special fan benefits.
+</p>
+
+<p style="color:gold;">
+Contact management for official membership approval.
+</p>
+
+<button onclick="showContact()">Contact Manager</button>
+
+</div>
+
+<script>
+
+function next(page){
+document.querySelectorAll('.page').forEach(p=>p.style.display="none");
+document.getElementById(page).style.display="block";
+}
+
+/* FIXED CONTACT (NO AUTO GMAIL FORCE) */
+function showContact(){
+alert("Manager Email: sticksmanagement009@gmail.com");
+}
+
+/* CODE SYSTEM */
+function checkCode(){
+let code=document.getElementById("codeInput").value;
+
+if(
+code==="prod_UEChbAtkebx4Zs" ||
+code==="prod_UECg4zXspsH1FV" ||
+code==="prod_UECfBcooNiqm6s"
+){
+next('page2');
+}else{
+alert("Invalid Code");
+}
+}
+
+/* ALERT */
+let alerts=["⚠️ Only few VIP slots left","🔥 High demand access","👀 New member joined"];
+setInterval(()=>{
+let box=document.getElementById("liveAlert");
+box.innerText=alerts[Math.floor(Math.random()*alerts.length)];
+box.style.display="block";
+setTimeout(()=>box.style.display="none",3000);
+},5000);
+
+</script>
+
+</body>
+</html>
